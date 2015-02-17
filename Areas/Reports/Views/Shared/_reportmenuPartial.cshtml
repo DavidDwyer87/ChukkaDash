@@ -1,0 +1,165 @@
+﻿<div class="panel-group" id="panel-485888" style="margin-left:-15px; margin-top:50px; width:300px;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-485888" href="#panel-element-764971">Resort Reports</a>
+        </div>
+        <div id="panel-element-764971" class="panel-collapse collapse @Model.Resort">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="list-group-item @Model.DMC">
+                        @Html.ActionLink("Destination management company(DMC)", "Index", "resorts", new { area = "Reports", sub = "Destination management company(DMC)", chan = "DMC" }, null)
+                    </li>
+                    <li class="list-group-item @Model.Hotel">
+                        @Html.ActionLink("Hotels", "Hotel", "resorts", new { area = "Reports", sub = "Hotels", chan = "hotel" }, null)
+                    </li>
+                    <li class="list-group-item @Model.Intl">
+                        @Html.ActionLink("International tour clients", "Intl", "resorts", new { area = "Reports", sub = "International tour groups/Tour operaters", chan = "ITL" }, null)
+                    </li>
+                    <li class="list-group-item @Model.LocationPax">
+                        @Html.ActionLink("Resorts pax by location", "Index", "Location", new { area = "Reports", sub = "Resorts pax by location", chan = "rpax" }, null)
+                    </li>
+                    <li class="list-group-item @Model.Perform">
+                        @Html.ActionLink("Tour performance", "Index", "Perform", new { area = "Reports", sub = "Tour performace", chan = "perform" }, null)
+                    </li>
+                    <li class="list-group-item @Model.All">
+                        @Html.ActionLink("All Resorts", "All", "resorts", new { area = "Reports", sub = "All Resorts", chan = "all" }, null)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="panel-title" data-toggle="collapse" data-parent="#panel-485888" href="#panel-element-411676">Cruise Reports</a>
+        </div>
+        <div id="panel-element-411676" class="panel-collapse collapse @Model.cruise">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="list-group-item @Model.Allcruise">
+                        @Html.ActionLink("All cruise", "Index", "Cruise", new { area = "Reports", sub = "All cruise line report", chan = "allcruise" }, null)
+                    </li>
+                    <li class="list-group-item @Model.byport">
+                        @Html.ActionLink("By port", "port", "cruise", new { area = "Reports", sub = "Cruise line by port", chan = "cruise" }, null)
+                    </li>
+                    <li class="list-group-item @Model.vessel">
+                        @Html.ActionLink("By Vessel", "vessel", "cruise", new { area = "Reports", sub = "By vessel", chan = "byvessel" }, null)
+                    </li>
+                    <li class="list-group-item @Model.CPax">
+                        @Html.ActionLink("Cruise pax by location", "cruise", "Location", new { area = "Reports", sub = "Cruise pax by location", chan = "cpax" }, null)
+                    </li>
+                    <li class="list-group-item @Model.CPerform">
+                        @Html.ActionLink("Tour performance", "cruise", "Perform", new { area = "Reports", sub = "Tour performance by cruise line", chan = "cperform" }, null)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="panel-title" data-toggle="collapse" data-parent="#panel-485888" href="#panel-element-411677">Sales Representative Reports</a>
+        </div>
+        <div id="panel-element-411677" class="panel-collapse collapse @Model.sales">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="list-group-item @Model.salesrep">
+                        @Html.ActionLink("By PAX", "srep", "Sales", new { area = "Reports", sub = "By PAX from Sales representatives", chan = "sales" }, null)
+                    </li>
+                    <li class="list-group-item @Model.SPax">
+                        @Html.ActionLink("Sales pax by location", "Sales", "Location", new { area = "Reports", sub = "Sales pax by location", chan = "spax" }, null)
+                    </li>
+                    <li class="list-group-item @Model.SPerform">
+                        @Html.ActionLink("Tour performace", "sales", "Perform", new { area = "Reports", sub = "Tour performance for sales representatives", chan = "salesPerform" }, null)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="panel-title" data-toggle="collapse" data-parent="#panel-485888" href="#panel-element-411678">Direct Channel Reports</a>
+        </div>
+        <div id="panel-element-411678" class="panel-collapse collapse @Model.direct">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="list-group-item @Model.walkin">
+                        @Html.ActionLink("By walk-ins", "walk", "Direct", new { area = "Reports", sub = "By walkin channels", chan = "walkin" }, null)
+                    </li>
+                    <li class="list-group-item @Model.website">
+                        @Html.ActionLink("By website", "website", "Direct", new { area = "Reports", sub = "By website channels", chan = "website" }, null)
+                    </li>
+                    <li class="list-group-item @Model.DPax">
+                        @Html.ActionLink("Direct channel pax by location", "direct", "Location", new { area = "Reports", sub = "Direct channel pax by location", chan = "dpax" }, null)
+                    </li>
+                    <li class="list-group-item @Model.DPerform">
+                        @Html.ActionLink("Tour performance", "direct", "Perform", new { area = "Reports", sub = "Tour performance for direct channels", chan = "directPerform" }, null)
+                    </li>
+                    <li class="list-group-item @Model.Alldirect">
+                        @Html.ActionLink("All direct channels", "all", "Direct", new { area = "Reports", sub = "By direct channels", chan = "direct" }, null)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="panel-title" data-toggle="collapse" data-parent="#panel-485888" href="#panel-element-411679">Groups Reports</a>
+        </div>
+        <div id="panel-element-411679" class="panel-collapse collapse @Model.group">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="list-group-item @Model.local">
+                        @Html.ActionLink("Local groups", "local", "group", new { area = "Reports", sub = "By direct channels", chan = "local" }, null)
+                    </li>
+                    <li class="list-group-item @Model.intlgroup">
+                        @Html.ActionLink("International groups", "national", "group", new { area = "Reports", sub = "By direct channels", chan = "intl" }, null)
+                    </li>
+                    <li class="list-group-item @Model.GPerform">
+                        @Html.ActionLink("Tour performance", "group", "Perform", new { area = "Reports", sub = "Tour performance for direct channels", chan = "groupPerform" }, null)
+                    </li>
+                    <li class="list-group-item @Model.GPax">
+                        @Html.ActionLink("Groups pax by location", "group", "Location", new { area = "Reports", sub = "Groups pax by location", chan = "gpax" }, null)
+                    </li>
+                    <li class="list-group-item @Model.Allgroup">
+                        @Html.ActionLink("All group channels", "All", "group", new { area = "Reports", sub = "By direct channels", chan = "allgroups" }, null)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="panel-title" data-toggle="collapse" data-parent="#panel-485888" href="#panel-element-411680">Other Reports</a>
+        </div>
+        <div id="panel-element-411680" class="panel-collapse collapse @Model.other">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="list-group-item @Model.hotelr">
+                        @Html.ActionLink("Hotel reports", "Hotel", "Others", new { area = "Reports", sub = "Hotel report", chan = "hotelr" }, null)
+                    </li>
+                    <li class="list-group-item @Model.pax">
+                        @Html.ActionLink("Pax by location", "olocation", "Location", new { area = "Reports", sub = "Pax by location", chan = "Pax" }, null)
+                    </li>
+                    @*<li class="list-group-item @Model.OPerform">
+                        @Html.ActionLink("Revenue performance by tour", "Index", "Perform", new { area = "Reports", sub = "Tour performance for direct channels", chan = "directPerform" }, null)
+
+                    </li>
+                    <li class="@Model.ResortControlStatus.direct">
+                        @Html.ActionLink("Revenue performance by location", "Index", "Report", new { area = "Reports", sub = "By direct channels", chan = "direct" }, null)
+                    </li>*@
+                    <li class="list-group-item @Model.comp">
+                        @Html.ActionLink("Complimentary report", "comp", "Others", new { area = "Reports", sub = "Complimentary report", chan = "Comp" }, null)
+                    </li>
+                    <li class="list-group-item @Model.pending">
+                        @Html.ActionLink("Pending payment report", "pending", "Others", new { area = "Reports", sub = "Pending payment report", chan = "pending" }, null)
+                    </li>
+                    <li class="list-group-item @Model.cancel">
+                        @Html.ActionLink("Cancellation report", "cancel", "Others", new { area = "Reports", sub = "Cancellation report", chan = "cancel" }, null)
+                    </li>
+                    <li class="list-group-item @Model.nopromo">
+                        @Html.ActionLink("No promo code report", "nopromo", "Others", new { area = "Reports", sub = "No promo code report", chan = "nopromo" }, null)
+                    </li>
+                </ul>
+               </div>
+            </div>
+            </div>
+        </div>

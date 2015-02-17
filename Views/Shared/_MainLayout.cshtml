@@ -1,0 +1,139 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/logo.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="../../Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap/css/style.css" rel="stylesheet" />
+
+    <script src="../../Content/bootstrap/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../Content/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Content/Charts/Chart.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+                    <div style="margin-left:60px; font-weight:700;" class="navbar-header">
+                        <a class="navbar-brand" href="/Dashboard/resortDash">Chukka Dashboard</a>
+                    </div>
+                    <ul style="margin-left:33px;" class="nav navbar-nav">
+                        <li class="">
+                            <a href="/Dashboard/resort">Dashboard</a>
+                        </li>
+                        @*@if (r.managePromo)
+                        {*@
+                            <li class="">
+                                <a href="/Promo">Manage promo codes </a>
+                            </li>
+                        @*}*@
+
+                        @*@if (r.report)
+                        {*@
+                            <li class="">
+                                <a id="report" href="/Reports/Report">Reports</a>
+                            </li>
+                        @*}*@
+
+                        @*@if (r.gpreport)
+                        {*@
+                            <li class="">
+                                <a id="report" href="/GP/GreatP">Great Plains Reports</a>
+                            </li>
+                        @*}*@
+
+                        
+                    </ul>
+                    @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="/Dashboard/resortDash"> </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome @User.Identity.Name <strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a id="modal-7033" href="#modal-container-7033" role="button" class="btn" data-toggle="modal">
+                                                <span class="glyphicon glyphicon-user"></span>
+                                                Change password
+                                            </a>
+                                        </li>
+                                        <li class="divider">
+                                        </li>
+                                        @*@if (r.settings)
+                                        {*@
+                                            <li>
+                                                <a id="settings" href="/Settings">
+                                                    <span class="glyphicon glyphicon-cog"></span>
+                                                    Settings
+                                                </a>
+                                            </li>
+                                            <li class="divider">
+                                            </li>
+                                        @*}*@
+                                        <li>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                                <span class="glyphicon glyphicon-log-out"></span>Log off
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                </nav>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-4 column" style="background-color: #41586e; width:300px;">
+                <div style="width: inherit; height:1000px; overflow: hidden;">
+                    @{
+                        if (ViewBag.Title == "Dashboard" || ViewBag.Title == "Manage Promo Codes")
+                        {
+                            @Html.Partial("_dashmenuPartial");
+                        }
+                        else if (ViewBag.Title == "Reports")
+                        {
+                            @Html.Partial("_reportmenuPartial")
+                        }
+                        else if (ViewBag.Title == "Great plains")
+                        {
+                            @Html.Partial("GPMenuPartial")
+                        }
+                        else if (ViewBag.Title == "Settings")
+                        {
+                            @Html.Partial("SettingsPartial")
+                        }
+                    }
+
+                </div>
+            </div>
+
+            <div class="col-md-8 column">
+                <div style="background-color: #f7f7f7; height: 50px; margin-left: -15px; width: 1200px; overflow: hidden;">
+                </div>
+                @Html.Partial("BreadCrumbpartial")
+                <div>
+                    @{
+                        if (ViewBag.Title == "Dashboard")
+                        {
+                            @Html.Partial("_rangefilterPartial");
+                        }
+                    }
+                </div>
+                <div style=" margin-top:100px; margin-left:-15px;">
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_ChangepasswordPartial")
+</body>
+</html>

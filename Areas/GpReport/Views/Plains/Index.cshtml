@@ -1,0 +1,81 @@
+﻿@model ChukkaDashB.Areas.GpReport.Models.GpModel
+@{
+    ViewBag.Title = "Great Plains";
+    Layout = "~/Areas/GpReport/Views/Shared/_LayoutPage.cshtml";
+}
+
+@if(Model.data !=null)
+{    
+     <div id="datatable" style="overflow:auto; height:450px; margin-top:20px;">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    CustomerID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Adult
+                </th>
+                <th>
+                    Children
+                </th>
+                <th>
+                    PAX
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (ChukkaDashB.Areas.GpReport.Models.TableData td in Model.data)
+                {
+                    <tr>
+                        <td>
+                            @td.index
+                        </td>
+                        <td>
+                            @td.CustomerID
+                        </td>
+                        <td>
+                            @td.name                                                       
+                        </td>
+                        <td>
+                            @td.adult
+                        </td>
+                        <td>
+                            @td.children
+                        </td>
+                        <td>
+                            @td.Pax
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <b>Total</b>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <b>@Model.total.adult</b>
+                </td>
+                <td>
+                    <b>@Model.total.children</b>
+                </td>
+                <td>
+                    <b>@Model.total.pax</b>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+    
+}

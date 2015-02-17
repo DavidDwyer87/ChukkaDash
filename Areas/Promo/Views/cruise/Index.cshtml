@@ -1,0 +1,78 @@
+﻿@model ChukkaDashB.Areas.Promo.Models.PageModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Promo/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+
+<div class="offset">
+    <h2 class="pageTitle">Cruise promo codes</h2>
+    <a id="modal-46300" href="#modal-container-866276" data-toggle="modal" class="btn btn-lg btn-success" onclick="return add('cruise');">
+        <img src="../../Images/Add-New-48.png" alt="add image" />
+        Add a new cruise line
+    </a>
+    <div style="overflow:auto; height:520px; margin-top:20px;">
+       @if(Model.pagedata["cruise"].Count >0)
+       {
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>CustomerID</th>
+                    <th>Customer Name</th>
+                    <th>Voucher Tag</th>
+                    <th>Promo Codes Assign</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ChukkaDashB.Areas.Promo.Models.TableScafoiding ts in Model.pagedata["cruise"])
+                {
+                    <tr>
+                        <td>
+                            @ts.index
+                        </td>
+                        <td>
+                            @ts.CustomerID
+                        </td>
+                        <td>
+                            @ts.Name
+                        </td>
+                        <td>
+                            @ts.promocode
+                        </td>
+                        <td>
+                            <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return getPromo('@ts.promocode','');">
+                                @ts.promoCount
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#modal-container-866276" class="btn btn-info" data-toggle="modal"
+                               role="button" onclick="edit('@ts.Name');">
+                                <em class="glyphicon glyphicon-pencil"></em> Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a id="rmove-@ts.index" href="#" class="btn btn-warning" onclick="return remove('@ts.index', '@ts.Name');">
+                                <em class="glyphicon glyphicon-minus"></em> Remove
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+       }
+       else
+       {
+            <div class="alert alert-dismissable alert-info">
+                        <h4>
+                            No promo code available
+                        </h4><strong>No promo code was set for any cruise line.<br /> 
+                        You add a new crusie line by clicking the above button add a new cruise line.</strong>
+            </div>
+       }
+    </div>
+
+</div>

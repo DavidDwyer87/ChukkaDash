@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="offset">
+    <h2 class="pageTitle"> Email notification Settings</h2>
+    <hr />
+    @using (Html.BeginForm("notify", "Settings", FormMethod.Post, new { id="smtp"}))
+    {
+        <table>
+            <tr>
+                <td>
+                    <b>SMTP Hostname</b>
+                </td>
+                <td>
+                    <input type="text" value="@ViewBag.hname" name="hostname" id="hostname"/>                    
+                </td>
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td>
+                    <input type="text" value="@ViewBag.email" name="email" id="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>SMTP login</b>
+                </td>
+                <td>
+                    <input type="text" value="@ViewBag.login" name="login" id="login"/>                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Password</b> 
+                </td>
+                <td>
+                    <input type="password" value="@ViewBag.password" name="pass" id="pass" />                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Port</b> 
+                </td>
+                <td>                   
+                    <input type="text" value="@ViewBag.port" name="port" id="port"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    }
+</div>

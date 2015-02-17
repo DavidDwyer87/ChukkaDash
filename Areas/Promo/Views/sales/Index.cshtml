@@ -1,0 +1,62 @@
+﻿@model ChukkaDashB.Areas.Promo.Models.PageModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Promo/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+
+<div class="offset">
+    <h2 class="pageTitle">Sales Representitive</h2>
+    <small class="pageSub">There are @Model.pagedata["sales"].Count sales representives for working for Chukka</small>
+    <div style="overflow:auto; height:600px; margin-top:20px;">
+        @if(Model.pagedata["sales"].Count>0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Sale Representative Name</th>
+                        <th>Number of Promo Codes Used</th>
+                        <th>Work for current customer</th>                   
+                    </tr>
+                </thead>
+                <tbody> 
+                    @foreach(ChukkaDashB.Areas.Promo.Models.TableScafoiding ts in Model.pagedata["sales"])
+                    {
+                        <tr>
+                            <td>
+                                @ts.index
+                            </td>
+                            <td>
+                                @ts.Name
+                            </td>
+                            <td>
+                                <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return getPromo('@ts.Name','sales');">
+                                    @ts.promoCount
+                                </a>                                
+                            </td>
+                            <td>
+                                -
+                            </td>
+                        </tr>                       
+                    }                             
+                </tbody>
+            </table>
+            
+           
+        }
+        else
+        {
+            <div class="alert alert-dismissable alert-info">
+                        <h4>
+                            No sales rep are currently located 
+                        </h4>
+                        <strong>
+                            Current the there are no sales representive in the database.<br />
+                            This is a result of missing information in the custom field table. Please seek technical assitance.
+                        </strong>
+            </div>
+        }
+    </div>
+</div>

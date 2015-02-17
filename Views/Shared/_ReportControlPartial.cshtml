@@ -1,0 +1,393 @@
+﻿
+<script type="text/javascript">
+    function check()
+    {
+        if (document.getElementById('datepickerFrom').value != 'From:' && document.getElementById('datepickerFrom').value != '')
+        {
+            if (document.getElementById('datepickerTo').value != 'From:' && document.getElementById('datepickerTo').value != '')
+            {
+                
+                document.getElementById("Rcontrol").submit();
+            }                
+        }
+        else
+        {
+            if (document.getElementById('datepickerTo').value != 'From:' && document.getElementById('datepickerTo').value != '') {
+                alert("Date range not valid. Please select a date range");
+            }
+            else
+            {
+                alert("Date range not valid. Please select a date range");
+            }            
+        }
+    }
+
+    function toexcel()
+    {
+        if (document.getElementById('datepickerFrom').value != 'From:' && document.getElementById('datepickerFrom').value != '') {
+            if (document.getElementById('datepickerTo').value != 'From:' && document.getElementById('datepickerTo').value != '') {
+                document.getElementById('mode').value = 'excel';
+                document.getElementById("Rcontrol").submit();
+                document.getElementById('mode').value = '';
+            }
+        }
+        else {
+            if (document.getElementById('datepickerTo').value != 'From:' && document.getElementById('datepickerTo').value != '') {
+                alert("Date range not valid. Please select a date range");
+            }
+            else {
+                alert("Date range not valid. Please select a date range");
+            }
+        }
+    }
+</script>
+
+<script>
+    function loadXMLDoc(name,mode,sp) {
+        document.getElementById("data").innerHTML = "<img src='../../Images/ajax-loader.gif' alt='loading...'/>";
+        
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById('data').innerHTML = xmlhttp.responseText;
+            }
+        }
+        
+        switch(mode)
+        {
+            case "resort":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+                    xmlhttp.send();
+                    break;
+                }
+            case "cruise":
+                {                   
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "port":
+                {                   
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "vessel":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                   document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "walk":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "web":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "alldirect":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "allgroup":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "local":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "intl":
+                {
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "hotel":
+                {                    
+                    xmlhttp.open("GET", "/Reports/query?sp="+sp+"&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value, true);
+
+                    xmlhttp.send();
+                    break;
+                }
+            case "excel":
+                {
+                    name = document.getElementById('myModalLabel').innerText;
+                    //xmlhttp.open("GET", "/Reports/query/ExcelDetailLineExport?sp=ReportDetails&na=" +
+                    //    document.getElementById('myModalLabel').innerText + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    //document.getElementById('datepickerTo').value, true);
+                    //xmlhttp.send();
+
+                    window.location = "/Reports/query/ExcelDetailLineExport?sp="+sp+"&na=" +
+                        document.getElementById('myModalLabel').innerText + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+                    document.getElementById('datepickerTo').value;
+                    break;
+                }
+
+            default: break;
+        }
+
+        document.getElementById("myModalLabel").innerHTML = name;
+        
+    }
+
+    function bylocation(name, chan) {
+        document.getElementById("data").innerHTML = "<img src='../../Images/ajax-loader.gif' alt='loading...'/>";
+        document.getElementById("myModalLabel").innerHTML = name;
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById('data').innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET", "/Reports/query?sp=paxbylocationDetail&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+            document.getElementById('datepickerTo').value, true);
+        xmlhttp.send();
+    }
+
+    function perform(name, cha) {
+        document.getElementById("data").innerHTML = "<img src='../../Images/ajax-loader.gif' alt='loading...'/>";
+        document.getElementById("myModalLabel").innerHTML = name;
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById('data').innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET", "/Reports/query?sp=TourPerformanceDetails&na=" + name + "&from=" + document.getElementById('datepickerFrom').value + "&to=" +
+            document.getElementById('datepickerTo').value + "&ch="+cha, true);
+        xmlhttp.send();
+    }
+
+    function searchby(name) {
+        document.getElementById("filter").innerHTML = "<img src='../../Images/ajax-loader.gif' alt='loading...'/>";
+        document.getElementById("myModalLabel").innerHTML = name;
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById('filter').innerHTML = xmlhttp.responseText;
+            }
+        }
+       
+        xmlhttp.open("GET", "/Reports/query/ResortFilter?val=" + name + "&selected="+
+            document.getElementById("mode").value, true);
+        xmlhttp.send();
+    }
+
+    function printTable(table)
+    {
+        //Get the HTML of div
+        var divElements = document.getElementById(table).innerHTML;
+        //Get the HTML of whole page
+        var oldPage = document.body.innerHTML;
+        //Reset the page's HTML with div's HTML only
+        document.body.innerHTML =
+          "<html><head><title></title></head><body>" +
+          "<img src='../../Images/logo.png' />" +
+          "From: " + document.getElementById('datepickerFrom').value +
+          "To: " + document.getElementById('datepickeTo').value+
+          divElements + "</body>";
+        //Print Page
+        window.print();
+        //Restore orignal HTML
+        if(table !='lineby')
+        {
+            document.body.innerHTML = oldPage;
+        }
+
+    }
+</script>
+
+<script>
+    var nameCol = '';
+    function holdnames(name, i) {
+        
+        if (document.getElementById('c_' + i).checked) {
+            nameCol = document.getElementById('mode').value;
+            nameCol = nameCol + "," + name;
+            document.getElementById('mode').value = nameCol;
+        }
+        else {
+            //alert(document.getElementById('mode').value);
+            document.getElementById('mode').value = document.getElementById('mode').value.replace(',' + name, '');
+        }
+    }
+
+    function selectAll() {
+        for (var i = 0; i < document.getElementById('count').value; i++) {
+            document.getElementById('c_' + i).checked = true;
+
+        }
+    }
+
+    function deselectAll() {
+        for (var i = 0; i < document.getElementById('count').value; i++) {
+            document.getElementById('c_' + i).checked = false;
+
+        }
+    }
+</script>
+
+<div style="background-color:white; border: 1px solid #e4e4e4; border-radius: 5px; width:auto; height:150px;">
+    @{
+        string action = ViewBag.post;
+        string controller = ViewBag.postControl;
+        string _channel = ViewBag.channel;
+    }
+    @using (Html.BeginForm(action, controller, new { area = @ViewBag.area }, FormMethod.Post, new { id = "Rcontrol",channel= _channel}))
+    {       
+
+        <div style="margin-left:20px;">
+            <table class="offsetContent" style="margin-bottom:10px;">
+                <tr>
+                    <td>
+                        <p>From Date: <input type="text" id="datepickerFrom" name="datepickerFrom" placeholder="From:" value="@Model.datefrom"></p>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <p>To Date : <input type="text" id="datepickerTo" name="datepickerTo" placeholder="To:" value="@Model.dateto"></p>
+                    </td>
+                    
+                </tr>
+               
+            </table>            
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-primary" style="float:left;" onclick="return check();">
+                                <span class="glyphicon glyphicon-search"></span>
+                                Search
+                            </button>
+                        </td>
+                        <td>
+                            @if(ViewBag.area == "Reports")
+                            {
+                                <a id="modal-944757" href="#modal-container-944757" role="button" data-toggle="modal"
+                                    class="btn btn-primary" style="float:left;" onclick="return searchby('@Model.filterVal');">
+                                    <span class="glyphicon glyphicon-th-list"></span>
+                                    Filter
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="btn-group" style="float:right; margin-top:-30px;">
+                    <a class="btn btn-info">Print to</a> 
+                    <button data-toggle="dropdown" class="btn btn-info dropdown-toggle"><span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" onclick="return printTable('datatable');">
+                                <span class="glyphicon glyphicon-print"></span>
+                                Printer
+                            </a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        @*<li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-file"></span>
+                                PDF
+                            </a>
+                        </li>
+                        <li class="divider">
+                        </li>*@
+                        <li>                            
+                            <a href="javascript:toexcel();">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                Export to excel
+                            </a>                           
+                        </li>
+                        @*<li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-th-list"></span>
+                                Export to csv
+                            </a>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <input type="text" value="@Model.filterVals" id="mode" name="mode" style="visibility:collapse;"/>
+        <input type="text" value="" id="mode2" name="mode2" style="visibility:collapse"/>
+        @*@Html.Partial("_ReportFilter")*@
+    }
+</div>
+    
+<link href="~/Content/jquery/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<!-- Load jQuery and bootstrap datepicker scripts -->
+<script src="../../../Content/jquery-1.9.1.min.js"></script>
+<script src="~/Content/jquery/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+<script>
+    $(function () {
+        $("#datepickerFrom").datepicker({ dateFormat: 'm/d/yy' });
+        $("#datepickerTo").datepicker({ dateFormat: 'm/d/yy' });
+    });
+</script>
+
+
+@Html.Partial("_DetailsPartial") 
+
+
+

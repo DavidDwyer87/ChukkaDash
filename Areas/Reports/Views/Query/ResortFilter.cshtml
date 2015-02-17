@@ -1,0 +1,26 @@
+﻿@model ChukkaDashB.Areas.Reports.Models.SearchBy
+@{
+    Layout = null;
+    int i = 0;
+}
+
+
+@foreach(ChukkaDashB.Areas.Reports.Models.FilterListModel list in Model.reportfilter)
+{
+    
+    <li>
+        @if(list.check)
+        {
+            <input type="checkbox"  checked="checked" id="c_@i" onclick="return holdnames('@list.name','@i');"/>  @list.name
+        }
+        else
+        {
+            <input type="checkbox" id="c_@i" onclick="return holdnames('@list.name','@i');" />@list.name
+        }
+        
+    </li>
+    i++;
+}
+
+<input id="count" value="@Model.reportfilter.Count" type="text" style="visibility:collapse;"/>
+

@@ -1,0 +1,11 @@
+﻿@model ChukkaDashB.Areas.Reports.Models.ResortMenuControlModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Reports/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+@if (Model.tabledata != null)
+{
+    @Html.Partial("_LocationdetailPartial")
+}

@@ -1,0 +1,45 @@
+﻿ 
+
+@{
+    if (ViewBag.Title == "Dashboard")
+    {
+            <ul class="breadcrumb" style="width:1500px;">
+                <li>
+                    <a href="/dashboard/">Home</a> <span class="divider">/</span>
+                </li>
+                @*<li>
+                    <a href="#"></a> <span class="divider">/</span>
+                </li>*@
+                <li class="active">
+                    Data
+                </li>
+            </ul> 
+    }
+    else if (ViewBag.Title == "Reports")
+    {
+         <ul class="breadcrumb" style="width:1500px;">
+                <li>
+                    <a href="/dashboard/">Home</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="">Reports</a> <span class="divider">/</span>
+                </li>
+                <li class="active">
+                    Data
+                </li>
+            </ul> 
+    }
+    else if(ViewBag.Title == "Great plains")
+    {
+
+    }
+    else if(ViewBag.Title == "Settings")
+    {
+
+    }
+    else if(ViewBag.Title == "Manage Promo Codes")
+    {
+                           
+    }     
+}
+                       

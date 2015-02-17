@@ -1,0 +1,33 @@
+﻿<div class="col column">
+    <div class="btn-group" style="float:right; margin-top:-25px;">
+        @{
+            string page = Model.optionState;
+            
+            if (!string.IsNullOrEmpty(page))
+            {
+                if (page == "salerep")
+                {
+                    page = "sales";
+                }
+                else if(page == "resort")
+                {
+                    page = "Dashboard";
+                }
+                else if(page == "target")
+                {
+                    page = "groupDash";
+                }
+                               
+                     
+            }
+            else
+            { 
+                page = "Dashboard";
+            }
+            
+        }
+        @Html.ActionLink("Week", "Index", page, new { cati = "week", option=page }, new { @class = Model.week })
+        @Html.ActionLink("Month", "Index", page, new { cati = "month", option = page }, new { @class = Model.month })
+        @Html.ActionLink("All", "Index", page, new { cati = "all", option = page }, new { @class = Model.all })
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model ChukkaDashB.Areas.Reports.Models.DetailListModel
+@{
+    Layout = null;
+}
+
+@foreach(ChukkaDashB.Areas.Reports.Models.DetailsModel d in  Model.details)
+{
+    <tr>
+        <td>
+            @d.index
+        </td>
+        <td>
+            @d.transNum
+        </td>
+        <td>
+            @d.date
+        </td>
+
+        <td>
+            @d.adult
+        </td>
+        <td>
+            @d.children
+        </td>       
+        <td>
+            @d.pax
+        </td>
+        <td>
+            @d.tourname
+        </td> 
+        <td>
+            @d.salerep
+        </td>    
+        <td>
+            @d.hotelname
+        </td>
+    </tr>
+}

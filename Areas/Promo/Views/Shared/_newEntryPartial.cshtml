@@ -1,0 +1,184 @@
+﻿<script type="text/javascript">
+
+                function validatenameDMC() {
+                    if (document.getElementById("DMCval").value == '') {
+                        document.getElementById("DMCval").focus();
+                        document.getElementById("summary").style.visibility = "visible";
+                    }
+                    else if (document.getElementById("Abbrivationt9").value == '') {
+                        document.getElementById("Abbrivationt9").focus();
+                        document.getElementById("summary2").style.visibility = "visible";
+                    }
+                }
+
+                function assignment()
+                {
+                    if (document.getElementById("DMCval1").value == '') {
+                        document.getElementById("DMCval1").focus();
+                        document.getElementById("summary1").style.visibility = "visible";
+                    }
+                    else
+                    {
+                        var link = '/promo/query/add?customID=' +
+                      document.getElementById('customerid').value.trim() +
+                      "&_name=" + document.getElementById('DMCval1').value.trim() +
+                      "&_tag=" + document.getElementById('Abbrivationt1').value +
+                      "&_channel=" + document.getElementById('chan').value.split('-')[0].trim() +
+                      "&_catigory=" + document.getElementById('chan').value.split('-')[1].trim() +
+                      "&returnurl=@Model.returnurl";
+
+                        //alert(link);
+                        window.location = link;
+                    }                   
+                }
+
+                function checkstatusDMC() {                  
+                   
+                    if (document.getElementById('myModalLabel1').innerHTML.trim() != 'Assign promo code') {
+                        if (document.getElementById("DMCval").value == '') {
+                            document.getElementById("DMCval").focus();
+                            document.getElementById("summary").style.visibility = "visible";
+                        }
+                        else if (document.getElementById("Abbrivationt9").value == '') {
+                            document.getElementById("Abbrivationt9").focus();
+                            document.getElementById("summary2").style.visibility = "visible";
+                        }                      
+                    }                    
+                    else {                        
+                       if (document.getElementById('submitBtn').innerHTML == 'Save Changes') {
+                            
+                            var link = '/promo/query/edit?customID=' +
+                               document.getElementById('customerid').value.trim() +
+                               "&_name=" + document.getElementById('DMCval').value +
+                               "&tag=" + document.getElementById('Abbrivationt').value.trim() +
+                                "&returnurl=@Model.returnurl" +
+                                "&_nam=" + document.getElementById('nam').value.trim();
+
+                           
+                            window.location = link;
+
+                        }
+                        else {
+                            var link = '/promo/query/add?customID=' +
+                                document.getElementById('customerid').value.trim() +
+                                "&_name=" + document.getElementById('DMCval').value.trim() +
+                                "&_tag=" + document.getElementById('Abbrivationt9').value.trim() +
+                                "&_channel=@Model.channel" +
+                                "&_catigory=" + document.getElementById('cati').value.trim() +
+                                "&returnurl=@Model.returnurl";
+
+                            window.location = link;
+                        }
+
+
+                    }
+                    return false;
+                }
+</script>
+
+<script type="text/javascript">
+    function remove(id, name) {
+        if (document.getElementById("rmove-" + id).innerHTML == "Sure?") {
+            window.location = "/promo/query/remove?_name=" + name+
+                "&returnurl=@Model.returnurl";;
+        }
+        document.getElementById("rmove-" + id).className = "btn btn-danger";
+        document.getElementById("rmove-" + id).innerHTML = "Sure?";
+    }
+
+    function removeH(id, name) {
+        if (document.getElementById("rmoveH-" + id).innerHTML == "Sure?") {
+            window.location = "/promo/query/remove?_name=" + name+
+                "&returnurl=@Model.returnurl";
+        }
+        document.getElementById("rmoveH-" + id).className = "btn btn-danger";
+        document.getElementById("rmoveH-" + id).innerHTML = "Sure?";
+    }
+
+    function removeI(id, name) {
+        if (document.getElementById("rmoveI-" + id).innerHTML == "Sure?") {
+            window.location = "/promo/query/remove?_name=" + name+
+                "&returnurl=@Model.returnurl";
+        }
+        document.getElementById("rmoveI-" + id).className = "btn btn-danger";
+        document.getElementById("rmoveI-" + id).innerHTML = "Sure?";
+    }
+</script>
+
+<div class="modal fade" id="modal-container-866276" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @using (Html.BeginForm("add", "query", new {area="Promo" }, FormMethod.Post, new { id = "dmc" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel9">
+                        
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td>
+                                <b> CustomerId</b>
+                            </td>
+                            <td>
+                                <input type="text" id="customerid" name="customerid" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Name</b>
+                            </td>
+                            <td>
+                                <input type="text" id="DMCval" value="" onblur="return validatenameDMC();" />                                
+                            </td>
+                        </tr>
+                        <tr style="visibility:collapse" id="summary">
+                            <td></td>
+                            <td>
+                                <p>
+                                    <b style="color:red;"> Name is a require field and needs to be enter.</b>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Vouncher tag</b>
+                            </td>
+                            <td>
+                                <input type="text" id="Abbrivationt9" name="Abbrivation" value="" onblur="return validatenameDMC();" />
+                            </td>
+                        </tr>
+                        <tr style="visibility:collapse" id="summary2">
+                            <td></td>
+                            <td>
+                                <p>
+                                    <b style="color:red;">A tag needed to identify the the promo code associate withe client.</b>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>
+                                    <b style="color:#808080;">
+                                        The voucher tag is a part of the voucher code and is specific to the vouncher assign to the channel.<br />
+                                        for example Jamaica Tours, JTL would be the tag for all vounchs for Jamaica Tours.
+                                    </b>
+                                </p>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="submitBtn" type="button" class="btn btn-primary" onclick="return checkstatusDMC();">Save changes</button>
+                </div>
+            </div>
+
+
+           
+        }
+    </div>
+</div>

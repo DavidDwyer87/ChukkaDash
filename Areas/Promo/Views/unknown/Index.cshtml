@@ -1,0 +1,51 @@
+﻿@model ChukkaDashB.Areas.Promo.Models.PageModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Promo/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="pageTitle">Unknown promo code</h2>
+<small class="pageSub">Currently there are @Model.pagedata["unknown"].Count amount of promo code unassign</small>
+
+<div class="offsetContent">
+    <div style="overflow:auto; height:550px; margin-top:20px;">
+        @if (Model.pagedata["unknown"].Count > 0)
+        {
+             <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Promo Code</th>                    
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(ChukkaDashB.Areas.Promo.Models.TableScafoiding d in Model.pagedata["unknown"])
+                    {
+                        <tr>
+                            <td>
+                                @d.index
+                            </td>
+                            <td>
+                                @d.Name
+                            </td>
+                            <td>
+                                <a href="#modal-container-866277" class="btn btn-info" data-toggle="modal"
+                                   role="button" onclick="assign('@d.Name');">
+                                    <em class="glyphicon glyphicon-pencil"></em> Assign
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+        }       
+    </div>
+
+</div>
+
+

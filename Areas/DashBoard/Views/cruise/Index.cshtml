@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div class="offset">
+    <h2 class="pageTitle">Cruise</h2>
+    <h4 style="margin-left:20px;">Cruise line summary for the week</h4>
+    <hr />
+    <table>
+        <tr>
+            @if (Model.data != null)
+            {
+                foreach (ChukkaDashB.Areas.DashBoard.Models.cruisedetails ship in Model.data)
+                {
+                    ViewBag.name = ship.name;
+                    ViewBag.pax = ship.pax;
+
+                    <td>
+                        @Html.Partial("_ShipPartial")
+                    </td>
+                }
+            }
+            else
+            {
+                <td>
+                    <div class="alert alert-dismissable alert-warning">
+                        <h4>
+                            Alert!
+                        </h4><strong>No cruise line was found</strong>
+                    </div>
+                </td>
+            }
+        </tr>
+    </table>
+    <div style="margin-top:30px;">
+        <h4 style="margin-left:20px;">Cruise line targets for the @*@Model.dashFilter*@</h4>
+        <hr />
+        <canvas id="canvas" height="250" width="600"></canvas>
+    </div>
+    @Html.Partial("_graph")
+</div>

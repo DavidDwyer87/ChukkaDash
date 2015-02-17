@@ -1,0 +1,88 @@
+﻿@*<a id="modal-7033" href="#modal-container-7033" role="button" class="btn" data-toggle="modal">Launch demo modal</a>*@
+
+
+
+<div class="modal fade" id="modal-container-7034" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   @using (Html.BeginForm("adduser", "Settings", FormMethod.Post, new { id = "addu" }))
+   {
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    New User
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td>
+                            <b>Username</b>
+                        </td>
+                        <td>
+                            <input type="text" value="" id="user" name="user" />
+                        </td>
+                        <td>
+                            <p id="msgu" style="color:red;visibility:collapse;">
+                                not a valid username
+                            </p>
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <td>
+                            <b>Email</b>
+                        </td>
+                        <td>
+                            <input type="text" value="" id="email" name="email"/>
+                        </td>
+                        <td>
+                            <p id="msge" style="color:red; visibility:collapse;">
+                                not a valid email
+                            </p>
+                        </td>
+                    </tr>                   
+                    <tr></tr>
+                    <tr>
+                        <td>
+                            <b>User page access</b>
+                        </td>
+                        <td>
+                                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <input type="checkbox"  value="Manage Promo codes" id="mpc" name="mpc" />
+                                    <b>Manage Promo codes</b>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="Reports" id="rp" name="rp"/>
+                                    <b>Reports</b>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="Great plain report" id="gpr" name="gpr" />
+                                    <b>Great plain report</b>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="Settings" id="sett" name="sett"/>
+                                    <b>Settings</b>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                <button type="button" class="btn btn-success"onclick="return validate();" >Add User</button>
+            </div>
+        </div>
+
+    </div>
+   }
+</div>
+

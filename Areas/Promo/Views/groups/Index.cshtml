@@ -1,0 +1,200 @@
+﻿@model ChukkaDashB.Areas.Promo.Models.PageModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Promo/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+@Html.Partial("_newChannelPartial")
+
+
+<script type="text/javascript">
+    function loadData(id, name, tag) {
+
+        document.getElementById("ENameofDMC2").value = name;
+        document.getElementById("EAbbrivation2").value = tag;
+        document.getElementById("ecid").value = id;
+    }
+
+    function assignState(t) {
+
+        document.getElementById('tag').value = t;
+    }
+
+
+</script>
+<div class="offset">
+    <h2 class="pageTitle">Groups promo codes</h2>
+    <a id="modal-46300" href="#modal-container-866276" data-toggle="modal" class="btn btn-lg btn-success" onclick="return add('local');">
+        <img src="../../Images/Add-New-48.png" alt="add image" />
+        Add local groups promo code
+    </a>
+
+    <a id="modal-46300" href="#modal-container-866276" data-toggle="modal" class="btn btn-lg btn-success" onclick="return add('itlgrp');">
+        <img src="../../Images/Add-New-48.png" alt="add image" />
+        Add International group promo code
+    </a>  
+    <br />
+    <br />
+
+    <div class="panel-group" id="panel-633820">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-633820" href="#panel-element-535692">
+                    Local groups
+                    <span class="badge pull-right">
+                        @Model.pagedata["local"].Count
+                    </span>
+                </a>
+            </div>
+            <div id="panel-element-535692" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @if (Model.pagedata["local"].Count > 0)
+                    {
+                        <div style="overflow:auto; height:200px; margin-top:20px;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>CustomerID</th>
+                                        <th>Customer Name</th>
+                                        <th>Voucher Tag</th>
+                                        <th>Promo Codes Assign</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ChukkaDashB.Areas.Promo.Models.TableScafoiding td in Model.pagedata["local"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @td.index
+                                            </td>
+                                            <td>
+                                                @td.CustomerID
+                                            </td>
+                                            <td>
+                                                @td.Name
+                                            </td>
+                                            <td>
+                                                @td.promocode
+                                            </td>
+                                            <td>
+                                                <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return getPromo('@td.promocode','');">
+                                                    @td.promoCount
+                                                </a>
+</td>
+                                            <td>
+                                                <a href="#modal-container-866276" class="btn btn-info" data-toggle="modal"
+                                                   role="button" onclick="edit('@td.Name');">
+                                                    <em class="glyphicon glyphicon-pencil"></em> Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a id="rmove-@td.index" href="#" class="btn btn-warning" onclick="return remove('@td.index', '@td.Name');">
+                                                    <em class="glyphicon glyphicon-minus"></em> Remove
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                         <div class="alert alert-dismissable alert-info">
+                            <h4>
+                                No promo codes located
+                            </h4>
+                            <strong>
+                                Currently no promo code exist for local groups.<br />
+                                To add a promo code for this catigory click the button add local promo code
+                            </strong>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="panel-title" data-toggle="collapse" data-parent="#panel-633820" href="#panel-element-845717">
+                    International groups
+                    <span class="badge pull-right">
+                        @Model.pagedata["itlgrp"].Count
+                    </span>
+                </a>
+            </div>
+            <div id="panel-element-845717" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @if(Model.pagedata["itlgrp"].Count >0)
+                    {
+                         <div style="overflow:auto; height:200px; margin-top:20px;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>CustomerID</th>
+                                        <th>Customer Name</th>
+                                        <th>Voucher Tag</th>
+                                        <th>Promo Codes Assign</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ChukkaDashB.Areas.Promo.Models.TableScafoiding td in Model.pagedata["itlgrp"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @td.index
+                                            </td>
+                                            <td>
+                                                @td.CustomerID
+                                            </td>
+                                            <td>
+                                                @td.Name
+                                            </td>
+                                            <td>
+                                                @td.promocode
+                                            </td>
+                                            <td>
+                                                <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return getPromo('@td.promocode','');">
+                                                    @td.promoCount
+                                                </a>
+</td>
+                                            <td>
+                                                <a href="#modal-container-866276" class="btn btn-info" data-toggle="modal"
+                                                   role="button" onclick="edit('@td.Name');">
+                                                    <em class="glyphicon glyphicon-pencil"></em> Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a id="rmoveH-@td.index" href="#" class="btn btn-warning" onclick="return removeH('@td.index', '@td.Name');">
+                                                    <em class="glyphicon glyphicon-minus"></em> Remove
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                         <div class="alert alert-dismissable alert-info">
+                            <h4>
+                                No promo codes located
+                            </h4>
+                            <strong>
+                                Currently no promo code exist for international group.<br />
+                                To add a promo code for this catigory click the button add international promo code
+                            </strong>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>     
+</div>

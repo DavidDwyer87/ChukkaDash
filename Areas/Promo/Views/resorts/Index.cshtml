@@ -1,0 +1,229 @@
+﻿@model ChukkaDashB.Areas.Promo.Models.PageModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Promo/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div class="offset">
+    <h2 class="pageTitle">Manage promo code @*@Model.pageIdentifier*@</h2>
+    <small class="pageSub">There is a total of @*Model.resortCount*@ promo codes assign to  @*@Model.pageIdentifier*@ channel.</small>
+
+    <div class="offsetContent">
+        <a id="modal-866276" href="#modal-container-866276" data-toggle="modal" class="btn btn-lg btn-success in" onclick="return add('DMC');">
+            <img src="../../Images/Add-New-48.png" alt="add image" />
+            Add New DMC
+        </a>
+
+        <a id="modal-866276" href="#modal-container-866276" data-toggle="modal" class="btn btn-lg btn-success" onclick="return add('HTL');">
+            <img src=" ../../Images/Add-New-48.png" alt="add image" />
+            Add New HTL
+        </a>
+
+        <a id="modal-866276" href="#modal-container-866276" data-toggle="modal" class="btn btn-lg btn-success" onclick="return add('ITL');">
+            <img src="../../Images/Add-New-48.png" alt="add image" />
+            Add New INTL
+        </a>
+
+        <br />
+        <br />
+      
+        <div class="panel-group" id="panel-633820">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-633820" href="#panel-element-535692">
+                        Destination Management Company <span class="badge pull-right">
+                            @Model.pagedata["dmc"].Count
+                        </span>
+                    </a>
+                </div>
+                <div id="panel-element-535692" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div style="overflow:auto; height:200px; margin-top:20px;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>CustomerID</th>
+                                        <th>Customer Name</th>
+                                        <th>Voucher Tag</th>
+                                        <th>Promo Codes Assign</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ChukkaDashB.Areas.Promo.Models.TableScafoiding ts in Model.pagedata["dmc"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @ts.index
+                                            </td>
+                                            <td>
+                                                @ts.CustomerID
+                                            </td>
+                                            <td>
+                                                @ts.Name
+                                            </td>
+                                            <td>
+                                                @ts.promocode
+                                            </td>
+                                            <td>
+                                                <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return getPromo('@ts.promocode','');">
+                                                    @ts.promoCount
+                                                </a>
+</td>
+                                            <td>
+                                                <a href="#modal-container-866276" class="btn btn-info" data-toggle="modal"
+                                                   role="button" onclick="edit('@ts.Name');">
+                                                    <em class="glyphicon glyphicon-pencil"></em> Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a id="rmove-@ts.index" href="#" class="btn btn-warning" onclick="return remove('@ts.index', '@ts.Name');">
+                                                    <em class="glyphicon glyphicon-minus"></em> Remove
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-633820" href="#panel-element-845717">
+                        Hotel
+                        <span class="badge pull-right">
+                            @Model.pagedata["htl"].Count
+                        </span>
+                    </a>
+                </div>
+                <div id="panel-element-845717" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div style="overflow:auto; height:200px; margin-top:20px;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>CustomerID</th>
+                                        <th>Customer Name</th>
+                                        <th>Voucher Tag</th>
+                                        <th>Promo Codes Assign</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ChukkaDashB.Areas.Promo.Models.TableScafoiding ts in Model.pagedata["htl"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @ts.index
+                                            </td>
+                                            <td>
+                                                @ts.CustomerID
+                                            </td>
+                                            <td>
+                                                @ts.Name
+                                            </td>
+                                            <td>
+                                                @ts.promocode
+                                            </td>
+                                            <td>
+                                                <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return getPromo('@ts.promocode','');">
+                                                    @ts.promoCount
+                                                </a>
+</td>
+                                            <td>
+                                                <a href="#modal-container-866276" class="btn btn-info" data-toggle="modal"
+                                                   role="button" onclick="edit('@ts.Name');">
+                                                    <em class="glyphicon glyphicon-pencil"></em> Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a id="rmoveH-@ts.index" href="#" class="btn btn-warning" onclick="return removeH('@ts.index', '@ts.Name');">
+                                                    <em class="glyphicon glyphicon-minus"></em> Remove
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-633820" href="#panel-element-845718">
+                        International Tour Clients
+                        <span class="badge pull-right">
+                            @Model.pagedata["itl"].Count
+                        </span>
+                    </a>
+                </div>
+                <div id="panel-element-845718" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div style="overflow:auto; height:200px; margin-top:20px;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>CustomerID</th>
+                                        <th>Customer Name</th>
+                                        <th>Voucher Tag</th>
+                                        <th>Promo Codes Assign</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ChukkaDashB.Areas.Promo.Models.TableScafoiding ts in Model.pagedata["itl"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @ts.index
+                                            </td>
+                                            <td>
+                                                @ts.CustomerID
+                                            </td>
+                                            <td>
+                                                @ts.Name
+                                            </td>
+                                            <td>
+                                                @ts.promocode
+                                            </td>
+                                            <td>
+                                                <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return getPromo('@ts.promocode','');">
+                                                    @ts.promoCount
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#modal-container-866276" class="btn btn-info" data-toggle="modal"
+                                                   role="button" onclick="edit('@ts.Name');">
+                                                    <em class="glyphicon glyphicon-pencil"></em> Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a id="rmoveI-@ts.index" href="#" class="btn btn-warning" onclick="return removeI('@ts.index', '@ts.Name');">
+                                                    <em class="glyphicon glyphicon-minus"></em> Remove
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

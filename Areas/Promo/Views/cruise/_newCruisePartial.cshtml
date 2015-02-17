@@ -1,0 +1,105 @@
+﻿
+<div class="modal fade" id="modal-container-46301" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @using (Html.BeginForm("Index", "CruisePromo", new { option = "resort", op = "DMC" }, FormMethod.Post, new { id = "dmc" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        New Cruise line
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td>
+                                <b> CustomerId</b>
+                            </td>
+                            <td>
+                                <input type="text" id="customerid" name="customerid" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b> Name of Cruise</b>
+                            </td>
+                            <td>
+                                <input type="text" id="NameofDMC" name="NameofDMC" value="" onblur="return validatenameDMC();" />
+                                <input type="text" name="cati" value="cruise" style="visibility:collapse;" />
+                            </td>
+                        </tr>
+                        <tr style="visibility:collapse" id="summary">
+                            <td></td>
+                            <td>
+                                <p>
+                                    <b style="color:red;"> Cruise line name is a require field and needs to be enter.</b>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Vouncher tag</b>
+                            </td>
+                            <td>
+                                <input type="text" id="Abbrivation" name="Abbrivation" value="" onblur="return validatenameDMC();" />
+                            </td>
+                        </tr>
+                        <tr style="visibility:collapse" id="summary2">
+                            <td></td>
+                            <td>
+                                <p>
+                                    <b style="color:red;">A tag needed to identify the the promo code associate with the client.</b>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>
+                                    <b style="color:#808080;">
+                                        The voucher tag is a part of the voucher code and is specific to the vouncher assign to the Cruise.
+                                    </b>
+                                </p>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="return checkstatusDMC();">Save changes</button>
+                </div>
+            </div>
+
+
+            <script type="text/javascript">
+                function validatenameDMC() {
+                    if (document.getElementById("NameofDMC").value == '') {
+                        document.getElementById("NameofDMC").focus();
+                        document.getElementById("summary").style.visibility = "visible";
+                    }
+                    else if (document.getElementById("Abbrivation").value == '') {
+                        document.getElementById("Abbrivation").focus();
+                        document.getElementById("summary2").style.visibility = "visible";
+                    }
+                }
+
+                function checkstatusDMC() {
+
+                    if (document.getElementById("NameofDMC").value == '') {
+                        document.getElementById("NameofDMC").focus();
+                        document.getElementById("summary").style.visibility = "visible";
+                    }
+                    else if (document.getElementById("Abbrivation").value == '') {
+                        document.getElementById("Abbrivation").focus();
+                        document.getElementById("summary2").style.visibility = "visible";
+                    }
+                    else {
+                        document.getElementById("dmc").submit();
+                    }
+                    return false;
+                }
+            </script>
+        }
+    </div>
+</div>

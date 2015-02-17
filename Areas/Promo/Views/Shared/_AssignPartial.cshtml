@@ -1,0 +1,108 @@
+﻿
+<div class="modal fade" id="modal-container-866277" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @using (Html.BeginForm("add", "query", new { area = "Promo" }, FormMethod.Post, new { id = "dmc" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel1">
+                        Assign promo code 
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td>
+                                <b> CustomerId</b>
+                            </td>
+                            <td>
+                                <input type="text" id="customerid1" name="customerid" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Name</b>
+                            </td>
+                            <td>
+                                <input type="text" id="DMCval1" value="" onblur="return validatenameDMC();" />
+                            </td>
+                        </tr>
+                        <tr style="visibility:collapse" id="summary1">
+                            <td></td>
+                            <td>
+                                <p>
+                                    <b style="color:red;"> Name is a require field and needs to be enter.</b>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Vouncher tag</b>
+                            </td>
+                            <td>
+                                <input type="text" id="Abbrivationt1" readonly="readonly" name="Abbrivation" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Select channel</b> 
+                            </td>
+                            <td>
+                                <select id="chan">
+                                    <option value="resort - DMC">
+                                        resort - DMC
+                                    </option>
+                                    <option value="resort - HTL">
+                                        resort - HTL
+                                    </option>
+                                    <option value="resort - ITL">
+                                        resort - ITL
+                                    </option>
+                                    <option value="cruise - cruise">
+                                        cruise
+                                    </option>
+                                    <option value="direct - walkin">
+                                        direct - walkins
+                                    </option>
+                                    <option value="direct - website">
+                                        direct - website
+                                    </option>
+                                    <option value="groups - local">
+                                        groups - local
+                                    </option>
+                                    <option value="groups - itlgrp">
+                                        groups - international
+                                    </option>
+                             </select>
+                            </td>
+                        </tr>
+                        <tr style="visibility:collapse" id="summary2">
+                            <td></td>
+                            <td>
+                                <p>
+                                    <b style="color:red;">A tag needed to identify the the promo code associate withe client.</b>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>
+                                    <b style="color:#808080;">
+                                        The voucher tag is a part of the voucher code and is specific to the vouncher assign to the channel.<br />
+                                        for example Jamaica Tours, JTL would be the tag for all vounchs for Jamaica Tours.
+                                    </b>
+                                </p>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="return assignment();">Save changes</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿@{
+    //ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="offset">
+    <h2 class="pageTitle">User admin</h2>
+    <hr />
+    <a id="modal-7033" href="#modal-container-7033" role="button" data-toggle="modal" class="btn btn-lg btn-success">
+        <img src="../../Images/Add-New-48.png" alt="add image" />
+        Add New User
+    </a>
+
+    <div style="overflow:auto; height:500px; margin-top:20px;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Email</th>                   
+                    <th>Edit</th>
+                    <th>Change password</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                @using (var ctx = new ChukkaDashB.Models.UsersContext())
+                {
+                    int i = 1;
+                    foreach (var user in ctx.UserProfiles)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@user.UserName</td>
+                            <td>@user.email</td>
+                            <td>
+                                <a id="modal-7034" href="#modal-container-7034" role="button" data-toggle="modal"
+                                   class="btn btn-primary"
+                                   onclick="return loadUser('@user.UserName','@user.email','@user.managePromo.ToString()','@user.report.ToString()','@user.gpreport.ToString()','@user.settings.ToString()');">Edit</a>
+                            </td>
+                            <td>
+                                <a id="modal-7035" href="#modal-container-7035" 
+                                   role="button" class="btn btn-primary" data-toggle="modal" onclick="return chang('@user.UserName');">password</a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-warning" id="rmove3-@i" onclick="return remove('@i','@user.UserName');">Remove user</button>
+                            </td>
+                        </tr>
+
+                        i++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @Html.Partial("_addUserPartial")
+
+    <script>
+        function validate() {
+            var re = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if (document.getElementById('user').value != "") {
+                if (re.test(document.getElementById('email').value) == true) {
+                    document.getElementById('addu').submit();
+                }
+                else {
+                    document.getElementById('msge').style.visibility = "visible";
+                }
+            }
+            else {
+                document.getElementById('msgu').style.visibility = "visible";
+            }
+        }
+
+        function loadUser(user, email, mpc, rp, gpr, set) {
+            document.getElementById('user').readOnly = "true";
+            document.getElementById('user').value = user;
+
+            document.getElementById('email').value = email;
+            if (mpc == 'True') {
+                document.getElementById('mpc').checked = true;
+            }
+
+            if (rp == 'True') {
+                document.getElementById('rp').checked = true;
+            }
+
+            if (gpr == 'True') {
+                document.getElementById('gpr').checked = true;
+            }
+
+            if (set == 'True') {
+                document.getElementById('sett').checked = true;
+            }
+
+        }
+
+        function remove(id, name) {
+            if (document.getElementById("rmove3-" + id).innerHTML == "Sure?") {
+                window.location = "/Settings/remove?user=" + name;
+            }
+            document.getElementById("rmove3-" + id).className = "btn btn-danger";
+            document.getElementById("rmove3-" + id).innerHTML = "Sure?";
+
+        }
+
+        function chang(user)
+        {
+            document.getElementById('myModalLabel11').innerHTML = "change password - " + user;
+            document.getElementById('userna').value = user;
+        }
+    </script>
+</div>
+

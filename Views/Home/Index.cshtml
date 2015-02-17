@@ -1,0 +1,62 @@
+﻿@model ChukkaDashB.Models.LoginModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="indent">
+    <div>
+        <img src="../../Images/logo.png" alt="Chukka logo" />
+    </div>
+    <table>
+        <tr>
+            <td>
+                <div id="wrapper">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "login-form", name = "login-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="header">
+                            <h1>Login Form</h1>
+                            <span>Fill out the form below to login to access Chukka Dashboard.</span>
+                        </div>
+
+                        <div class="content">
+                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username", @class = "input username", name = "username" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                            @*<input name="username" type="text" class="input username" placeholder="Username" />*@
+                            <div class="user-icon"></div>
+                            @*<input name="password" type="password" class="input password" placeholder="Password" />*@
+                            @Html.PasswordFor(m => m.Password, new { name = "password", placeholder = "Password", @class = "input password" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                            <div class="pass-icon"></div>
+                        </div>
+
+                        <div class="footer">
+                            <input type="submit" name="submit" value="Login" class="button" />
+                            @*@Html.ActionLink("Register","Register","Account")*@
+                            @*<a id="modal-148756" href="#modal-container-148756" role="button" class="btn" data-toggle="modal">Forget your password?</a>*@
+                        </div>
+                    }
+                </div>
+            </td>
+            <td>
+                <div class="indentMessage">
+                    <h2>
+                        Authorized users only
+                    </h2>
+                    <br />
+                    <p>
+                        In order to gain access to the Chukka Dashboard you will need an account.
+
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@*@Html.Partial("_ForgetPassPartial")*@
+
+

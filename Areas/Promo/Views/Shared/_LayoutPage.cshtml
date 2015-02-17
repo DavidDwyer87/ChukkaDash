@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/logo.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="../../../../Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../../../Content/bootstrap/css/style.css" rel="stylesheet" />
+
+    <script src="../../Content/bootstrap/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../Content/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../../../Content/Charts/Chart.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function correctEntry(mode)
+        {
+            switch(mode)
+            {
+                case 'dmc':
+                    {
+                        document.getElementById('myModalLabel').innerHTML = 'New DMC';
+                        break;
+                    }
+                case 'htl':
+                    {
+                        document.getElementById('myModalLabel').innerHTML = 'New hotel';
+                        break;
+                    }
+                case 'intl':
+                    {
+                        document.getElementById('myModalLabel').innerHTML = 'New international tour groups';
+                        break;
+                    }
+                case 'cruise':
+                    {
+                        document.getElementById('myModalLabel').value = 'New cruise line';
+                        break;
+                    }
+                case 'local':
+                    {
+                        document.getElementById('myModalLabel').value = 'New local group';
+                        break;
+                    }
+                case 'international':
+                    {
+                        document.getElementById('myModalLabel').value = 'New internation group';
+                        break;
+                    }
+                case 'walkin':
+                    {
+                        document.getElementById('myModalLabel').value = 'New walk-in';
+                        break;
+                    }
+                case 'website':
+                    {
+                        document.getElementById('myModalLabel').value = 'New website';
+                        break;
+                    }
+                default: break;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function correctEntry() {
+            window.location = '/query/edit?CustomID=' +
+                   document.getElementById('customerid').value + '&_name=' +
+                   document.getElementById('DMCval').value + '&tag=' +
+                   document.getElementById('Abbrivationt').value;
+        }
+
+        function add(cati) {
+            document.getElementById('cati').value = cati;
+            document.getElementById('myModalLabel9').innerHTML = 'New Entry';
+            document.getElementById('submitBtn').innerHTML = 'Submit';
+        }
+
+        function edit(name) {
+
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    
+                    document.getElementById('localstor').innerHTML = xmlhttp.responseText;
+
+                    //alert(xmlhttp.responseText);
+                    document.getElementById('customerid').value = document.getElementById('custom').innerText;
+                    document.getElementById('DMCval').value = document.getElementById('cname').innerText;
+                    document.getElementById('nam').value = document.getElementById('cname').innerText
+                    document.getElementById('Abbrivationt9').value = document.getElementById('tag').value;
+                }
+            }
+
+            xmlhttp.open("GET", "/Promo/query/foredit?name=" + name, true);
+            xmlhttp.send();
+
+            document.getElementById('myModalLabel9').innerHTML = 'Edit - ' + name;
+            document.getElementById('submitBtn').innerHTML = 'Save Changes';
+        }
+
+        function assign(code)
+        {           
+            document.getElementById('Abbrivationt1').value = code;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function getPromo(name,mode) {
+            document.getElementById('myModalLabel').innerHTML = name
+
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById('lineby').innerHTML = xmlhttp.responseText;
+                }
+            }
+            if (mode == 'sales')
+            {
+                xmlhttp.open("GET", "/Promo/query/Salesdetails?name=" + name, true);
+            }
+            else
+            {
+                xmlhttp.open("GET", "/Promo/query/getpromos?code=" + name, true);
+            }
+            
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                @Html.Partial("_MainMenuPartial")
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-4 column" style="background-color: #41586e; width:300px;">
+                <div style="width: inherit; height:1000px; overflow: hidden;">
+                    @Html.Partial("_dashmenuPartial");
+                </div>
+            </div>
+
+            <div class="col-md-8 column">
+                <div style="background-color: #f7f7f7; height: 50px; margin-left: -15px; width: 1200px; overflow: hidden;">
+                </div>
+                @Html.Partial("BreadCrumbpartial")
+               
+                <div style=" margin-top:100px; margin-left:-15px;">
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="localstor" style="visibility:collapse;">
+
+    </div>
+    <input type="text" value="" style="visibility:collapse;" id="cati" />
+    <input type="text" value="" style="visibility:collapse;" id="nam"/>
+    @Html.Partial("_newEntryPartial")
+    @Html.Partial("_AssignPartial")   
+    @Html.Partial("_salesPartial")    
+    @Html.Partial("_ChangepasswordPartial")
+</body>
+</html>

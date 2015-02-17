@@ -1,0 +1,77 @@
+﻿@model ChukkaDashB.Areas.Reports.Models.ResortMenuControlModel
+@{
+    ViewBag.Title = "walk";
+    Layout = "~/Areas/Reports/Views/Shared/_LayoutPage.cshtml";
+}
+
+@if (Model.tabledata != null)
+{
+    <div id="datatable" style="overflow:auto; height:450px; margin-top:20px;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Promo Code
+                    </th>
+                    <th>
+                        Adult
+                    </th>
+                    <th>
+                        Children
+                    </th>
+                    <th>
+                        PAX
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+    foreach (ChukkaDashB.Areas.Reports.Models.ResortTableModel tdata in Model.tabledata)
+    {
+        <tr>
+            <td>
+                @tdata.index
+            </td>
+            
+            <td>
+                <a id="modal-158344" href="#modal-container-158344" role="button" class="btn" data-toggle="modal" onclick="return loadXMLDoc('@tdata.name','intl','otherDetails');">
+                    @tdata.name
+                </a>
+                @{ViewBag.name = tdata.name;}
+            </td>
+            <td>
+                @tdata.adults
+            </td>
+            <td>
+                @tdata.children
+            </td>
+            <td>
+                @tdata.pax
+            </td>
+        </tr>
+    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                        <b>Total</b>
+                    </td>
+                    <td></td>
+                    <td>
+                        <b>@Model.footer.total_adult</b>
+                    </td>
+                    <td>
+                        <b>@Model.footer.total_children</b>
+                    </td>
+                    <td>
+                        <b>@Model.footer.total_pax</b>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+}

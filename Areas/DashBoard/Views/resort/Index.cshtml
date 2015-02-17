@@ -1,0 +1,32 @@
+﻿@model ChukkaDashB.Areas.DashBoard.Models.resortModel
+@{
+    ViewBag.Title = "View1";
+    Layout = "~/Areas/DashBoard/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div class="offset">
+    <h2 class="pageTitle">Resort</h2>
+
+    <h4 style="margin-left:20px;">Resort PAX Summary for the week</h4>
+    <hr />
+    <table>
+        <tr>
+            <td>
+                @Html.Partial("_DMC")
+            </td>
+            <td>
+                @Html.Partial("_Hotel")
+            </td>
+            <td>
+                @Html.Partial("_tourGroups")
+            </td>
+        </tr>
+    </table>
+    <div style="margin-top:30px;">
+        <h4 style="margin-left:20px;">Resort targets for the week</h4>
+        <hr />
+        <canvas id="canvas" height="250" width="600"></canvas>
+    </div>
+    @Html.Partial("_graph")
+</div>
